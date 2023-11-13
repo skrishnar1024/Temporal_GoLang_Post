@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"patient-registration/app"
+	"strconv"
 
 	"github.com/gorilla/mux" // You need to install the "gorilla/mux" package
 	"go.temporal.io/sdk/client"
@@ -36,7 +37,7 @@ func main() {
 
 		// Start the Temporal workflow
 		options := client.StartWorkflowOptions{
-			ID:        "Patient_Creation-115",
+			ID:        "Patient-" + strconv.Itoa(data.ID),
 			TaskQueue: app.RegistrationTaskQueue,
 		}
 		we, err := c.ExecuteWorkflow(context.Background(), options, app.PatientRegistrationWorkflow, data)

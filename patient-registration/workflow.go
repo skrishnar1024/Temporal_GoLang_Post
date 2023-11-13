@@ -14,8 +14,8 @@ func PatientRegistrationWorkflow(ctx workflow.Context, input PatientDetails) (Pa
 		InitialInterval:        time.Second,
 		BackoffCoefficient:     2.0,
 		MaximumInterval:        10 * time.Second,
-		MaximumAttempts:        10, // unlimited Attempts
-		NonRetryableErrorTypes: []string{"Error"},
+		MaximumAttempts:        30, // unlimited Attempts
+		NonRetryableErrorTypes: []string{"InvalidAgeError"},
 	}
 
 	options := workflow.ActivityOptions{
